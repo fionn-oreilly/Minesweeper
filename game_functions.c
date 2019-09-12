@@ -1,4 +1,8 @@
-/*Fionn O'Reilly C Programming Assignment 2*/
+/*Author:       Fionn O'Reilly
+  Description:  2 stage game. Stage 1 the user has to pick coordinates on a grid
+                without landing on a bomb location. Stage 2 the player has to guess
+                the locations of the bombs. The user can change the difficulty at the
+                beginning of the game.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -13,7 +17,7 @@ void startGame(struct locations bombs[], int bombInfo[][DIM], int gridSize, int 
     bool found = false, valid = false, search = true;
     char clues;
 
-    while (valid == false) { //Get and validate user unput for num bombs
+    while (valid == false) { //Get and validate user input for number of bombs in the grid
         printf("How many bombs would you like on the grid? (2,3,4): ");
         numBombs = getUserChar()-48;
         if (numBombs < 2 || numBombs > 4) {printf("\nNumber of bombs must be 2,3 or 4.\n");}
@@ -21,7 +25,7 @@ void startGame(struct locations bombs[], int bombInfo[][DIM], int gridSize, int 
     }
 
     valid = false;
-    while (valid == false) { //Get and validate user input for clues
+    while (valid == false) { //Get and validate user input for clues to show at game start
         printf("Enter \"Y\" if you would like 2 cells revealed for you, if not, enter \"N\": ");
         char clues = toupper(getUserChar());
 
@@ -29,7 +33,7 @@ void startGame(struct locations bombs[], int bombInfo[][DIM], int gridSize, int 
             valid = true;
             generateGrid(bombInfo,bombs,numBombs);
 
-            if (clues - 'Y' == 0) {guesses = 2;} //Reduce available guessus if user receives hints
+            if (clues - 'Y' == 0) {guesses = 2;} //Reduce available guessus if user receives clues
             setClues(knownInfo,bombInfo,numBombs,clues);
             display(knownInfo, (sizeof(knownInfo[0])/sizeof(int)));
             printf("Guesses remaining: %d\n", 5 - guesses);
@@ -70,7 +74,7 @@ void startGame(struct locations bombs[], int bombInfo[][DIM], int gridSize, int 
                 } //end while (guesses < 5 && status == STILL_ALIVE)
             } //end if (phase == 1)
 
-            if (phase == 2 && status == STILL_ALIVE) { //Find all bombs. Finding a cell that isn't a bomb is game over.
+            if (phase == 2 && status == STILL_ALIVE) { //Phase 2: Find all bombs. Finding a cell that isn't a bomb is game over.
                 printf("\n----PHASE 2 ----\nGuess bomb locations\n");
                 printf("Bombs remaining: %d\n", numBombs - bombsFound);
 
@@ -113,7 +117,9 @@ void startGame(struct locations bombs[], int bombInfo[][DIM], int gridSize, int 
                     }
                 } //end while (status == STILL_ALIVE)
             } //end if (phase == 2 && status == STILL_ALIVE)
-        } else {printf("Please enter \"Y\" or \"N\"\n");}
+        } else {
+            printf("Please enter \"Y\" or \"N\"\n");
+        }
     }//end while (valid == false)
 } /*end startGame*/
 
