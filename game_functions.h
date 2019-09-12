@@ -1,5 +1,4 @@
-/*Fionn O'Reilly C Programming Assignment 2*/
-#ifndef GAME_FUNCTIONS_H_INCLUDED
+/*Author: Fionn O'Reilly*/
 #define GAME_FUNCTIONS_H_INCLUDED
 #include <stdbool.h>
 
@@ -14,6 +13,7 @@ struct locations {
 };
 
 char* getName();
+
 void startGame(struct locations* bombs, int bombInfo[][DIM], int gridSize, int knownInfo[][DIM], int numBombs);
 
 void generateGrid(int bombInfo[][DIM],struct locations bombs[], int numBombs);
