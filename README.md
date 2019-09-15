@@ -1,4 +1,4 @@
-# minesweeper
+# Minesweeper
 
 A game similar to minesweeper where the player must input a certain number of co-ordinates without landing on a bomb. Each coordinate reveals a number indicating the number of bombs surrounding that cell. Landing on a bomb at this stage is game over.
 
