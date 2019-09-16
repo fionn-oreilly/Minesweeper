@@ -1,4 +1,8 @@
-/*Author: Fionn O'Reilly*/
+/* 
+ * Author: Fionn O'Reilly
+ * Description: Main file for game_functions.c
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,7 +20,7 @@ int main()
                                -1,-1,-1,-1,
                                -1,-1,-1,-1};
 
-
+    // call to function in game_functions.c
     startGame(bombs, bombInfo, DIM, knownInfo, numBombs);
 
     free(bombs);
